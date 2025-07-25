@@ -10,6 +10,12 @@ metadata = MetaData(naming_convention={
 
 db = SQLAlchemy(metadata=metadata)
 
+employee_meetings = db.Table(
+    'employees_meetings',
+    metadata,
+    db.Column('employee_id', db.Integer, db.ForeignKey('employees.id'), primary_key = True),
+    db.Column('meeting_id', db.Integer, db.ForeignKey('meetings.id'), primary_key = True)
+)
 
 class Employee(db.Model):
     __tablename__ = 'employees'
