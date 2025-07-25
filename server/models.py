@@ -28,7 +28,7 @@ class Employee(db.Model):
     assignments = db.relationship('Assignment', back_populates='employee', cascade='all, delete-orphan')
 
     #association proxy to get projects for this employee through assignments
-    projects = association_proxy(association_proxy('assignments', 'project', creator=lambda project_obj: Assignment(project=project_obj)))
+    projects = association_proxy('assignments', 'project', creator=lambda project_obj: Assignment(project=project_obj))
 
     def __repr__(self):
         return f'<Employee {self.id}, {self.name}, {self.hire_date}>'
